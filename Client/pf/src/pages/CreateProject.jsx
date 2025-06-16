@@ -24,7 +24,7 @@ const CreateProject = () => {
       const token = localStorage.getItem("token")|| localStorage.getItem('authToken');
 
       await axios.post(
-        'http://localhost:3000/api/add',
+        'https://subpf-1.onrender.com/api/add',
         form,
         {
           headers: { "authorization": `Bearer ${token}` },

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:3000/api", // change if different
+  baseURL: "https://subpf-1.onrender.com/api", // change if different
   withCredentials: true,
 });
 

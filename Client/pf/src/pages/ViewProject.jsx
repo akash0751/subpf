@@ -17,7 +17,7 @@ const ViewProject = () => {
 
   const fetchProjects = async () => {
     try {
-      const res = await axios.get('http://localhost:3000/api/get', {
+      const res = await axios.get('https://subpf-1.onrender.com/api/get', {
         headers: { "authorization": `Bearer ${token}` },
         withCredentials:true
       });
@@ -38,7 +38,7 @@ const ViewProject = () => {
   const deleteProject = async (id) => {
     if (window.confirm('Are you sure to delete?')) {
       try {
-        await axios.delete(`http://localhost:3000/api/delete/${id}`, {
+        await axios.delete(`https://subpf-1.onrender.com/api/delete/${id}`, {
           headers: { "authorization": `Bearer ${token}` },
           withCredentials:true
         });
@@ -61,7 +61,7 @@ const ViewProject = () => {
 
   const updateProject = async () => {
     try {
-      await axios.put(`http://localhost:3000/api/update/${selected._id}`, editData, {
+      await axios.put(`https://subpf-1.onrender.com/api/update/${selected._id}`, editData, {
         headers: { "authorization": `Bearer ${token}` },
         withCredentials:true
       });
