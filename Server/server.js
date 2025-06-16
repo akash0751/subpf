@@ -11,7 +11,9 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(cors(
     ({
-    origin: "https://projectguideinfo.netlify.app",
+    origin: ["https://projectguideinfo.netlify.app",
+        "https://akashpfinfos.netlify.app"
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
 })
