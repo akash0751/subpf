@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { registerUser } from "../services/authService";
 import { toast } from 'react-toastify';
+import { Link } from "react-router-dom";
 import '../styles/Auth.css'
 const Register = () => {
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ const Register = () => {
           </div>
           <button type="submit" className="btn btn-success w-100">Register</button>
           <p className="mt-3 text-center">
-            Already have an account? <a href="/login">Login</a>
+            Already have an account? <Link to="/login">Login</Link>
           </p>
         </form>
       </div>
