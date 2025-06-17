@@ -23,7 +23,7 @@ const Register = () => {
       console.log(response.data.token)
       console.log(response.data.apiKey)
       toast.success("Registration successful!");
-      setTimeout(() => navigate('/home'), 2000);
+      setTimeout(() => navigate('/home'), 1000);
     }} catch (err) {
       setError(err.response?.data?.message || "Registration failed");
     }finally{
@@ -49,9 +49,20 @@ const Register = () => {
             <label>Password</label>
             <input type="password" name="password" className="form-control" required onChange={handleChange} />
           </div>
-          <button type="submit" variant="primary" disabled={loading}>
-  {loading ? "Signing up..." : "Signup"}
-</button>
+          <button
+  type="submit"
+  className="btn btn-primary"
+  disabled={loading}
+  style={{ minWidth: '120px' }}
+>
+  {loading ? (
+    <>
+      <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+      signing up...
+    </>
+  ) : (
+    "Signup"
+  )} </button>
           <p className="mt-3 text-center">
             Already have an account? <Link to="/login">Login</Link>
           </p>

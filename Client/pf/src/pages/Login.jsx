@@ -22,7 +22,7 @@ const Login = () => {
         console.log(token)
         console.log(response.data.apiKey)
       toast.success('Login successful!');
-  setTimeout(() => navigate('/'), 2000);
+  setTimeout(() => navigate('/'), 1000);
       // Navigate to dashboard or homepage
     } catch (err) {
       toast.error(err.response?.data?.message || "Login failed");
@@ -45,9 +45,22 @@ const Login = () => {
             <label>Password</label>
             <input type="password" name="password" className="form-control" required onChange={handleChange} />
           </div>
-          <button type="submit" variant="primary" disabled={loading}>
-  {loading ? "Logging in..." : "Login"}
+          <button
+  type="submit"
+  className="btn btn-primary"
+  disabled={loading}
+  style={{ minWidth: '120px' }}
+>
+  {loading ? (
+    <>
+      <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+      Logging in...
+    </>
+  ) : (
+    "Login"
+  )}
 </button>
+
           <p className="mt-3 text-center">
             Don't have an account? <Link to='/register'>Register</Link>
           </p>
