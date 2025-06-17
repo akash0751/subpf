@@ -12,6 +12,7 @@ const CreateProject = () => {
     sourceCode: '',
     hostLink: '',
   });
+  const [loading, setLoading] = useState(false);
  const navigate = useNavigate();
   const handleChange = (e) => {
     setForm({...form, [e.target.name]: e.target.value });
@@ -19,7 +20,7 @@ const CreateProject = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     try {
       const apiKey = localStorage.getItem("apiKey");
 
@@ -38,7 +39,9 @@ const CreateProject = () => {
     } catch (error) {
       console.error("Error creating project:", error);
       toast.error("Login to Add Product");
-    }
+    }finally {
+    setLoading(false); // Stop loading
+  }
   };
 
   return (
@@ -73,7 +76,10 @@ const CreateProject = () => {
             <Form.Control name="hostLink" value={form.hostLink} onChange={handleChange} />
           </Form.Group>
 
-          <Button type="submit" variant="primary">Submit</Button>
+          <Button type="submit" variant="primary" disabled={loading}>
+  {loading ? "Submitting..." : "Submit"}
+</Button>
+
         </Form>
       </Card>
     </Container></>

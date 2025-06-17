@@ -15,10 +15,11 @@ const ViewProject = () => {
     hostLink: ''
   });
   const [showModal, setShowModal] = useState(false);
-
+  const [loading, setLoading] = useState(true);
   const apiKey = localStorage.getItem("apiKey"); // Store your API key in localStorage
 
   const fetchProjects = async () => {
+    setLoading(true);
     try {
       const res = await axios.get('https://subpf-1.onrender.com/api/get', {
         headers: { "x-api-key": apiKey },
@@ -28,7 +29,9 @@ const ViewProject = () => {
     } catch (err) {
       console.error(err);
       toast.error("Failed to fetch projects. Check API key.");
-    }
+    }finally {
+    setLoading(false); // Stop loading
+  }
   };
 
   useEffect(() => {
@@ -81,6 +84,21 @@ const ViewProject = () => {
       <NavBar />
       <Container className="my-5">
         <h3 className="mb-4">My Projects</h3>
+        {loading ? (
+  <div className="text-center py-5">
+    <span className="spinner-border text-primary" role="status" />
+    <p className="mt-2">Loading your projects...</p>
+  </div>
+) : (
+  <>
+    {projects.length === 0 && <p>No projects found.</p>}
+    {projects.map(project => (
+      <Card className="mb-3 p-3 shadow-sm" key={project._id}>
+        {/* card content */}
+      </Card>
+    ))}
+  </>
+)}
 
         {projects.length === 0 && <p>No projects found.</p>}
         {projects.map(project => (
