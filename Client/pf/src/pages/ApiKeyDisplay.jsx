@@ -32,6 +32,8 @@ const ApiKeyDisplay = () => {
             <p>tools</p>
             <p>sourceCode</p>
             <p>hostLink</p>
+            <h5>After fetching use,</h5>
+            <p>headers:'x-api-key : your_api_key'</p>
         </Card>
       </Container>
     </>
