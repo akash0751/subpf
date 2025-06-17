@@ -17,6 +17,9 @@ const registerSchema = new mongoose.Schema({
             role:{
                 type:String,
                 default:'user'
+            },
+            apiKey:{
+                type:String
             }
 
 },{

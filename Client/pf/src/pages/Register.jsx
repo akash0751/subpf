@@ -17,7 +17,9 @@ const Register = () => {
       const response = await registerUser(formData);
       if (response.status === 200){
       localStorage.setItem("authToken", response.data.token); 
+      localStorage.setItem("apiKey", response.data.apiKey);  
       console.log(response.data.token)
+      console.log(response.data.apiKey)
       toast.success("Registration successful!");
       setTimeout(() => navigate('/home'), 2000);
     }} catch (err) {

@@ -17,7 +17,9 @@ const Login = () => {
       const response = await loginUser(formData);
       const token = response.data.token;
         localStorage.setItem("token", token); 
+        localStorage.setItem("apiKey", response.data.apiKey);  
         console.log(token)
+        console.log(response.data.apiKey)
       toast.success('Login successful!');
   setTimeout(() => navigate('/'), 2000);
       // Navigate to dashboard or homepage

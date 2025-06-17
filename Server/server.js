@@ -6,9 +6,11 @@ const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
 const userRoute = require('./routes/user')
 const projectRoute = require('./routes/project')
+const rateLimiter = require('./middleware/rateLimiter')
 dotenv.config()
 app.use(express.json())
 app.use(cookieParser())
+app.use(rateLimiter)
 app.use(cors(
     ({
     origin: ["https://projectguideinfo.netlify.app",

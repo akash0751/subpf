@@ -30,7 +30,7 @@ const NavBar = () => {
         <ul className="navbar-nav ms-auto">
           <li className="nav-item"><Link className="nav-link" to="/add-project">Create Project</Link></li>
           <li className="nav-item"><Link className="nav-link" to="/view-project">View Project</Link></li>
-          
+          <li className="nav-item"><Link className="nav-link" to="/api-key">Api Key</Link></li>
           {token ? (
             <li className="nav-item">
               <button className="btn btn-outline-light ms-3" onClick={handleLogout}>

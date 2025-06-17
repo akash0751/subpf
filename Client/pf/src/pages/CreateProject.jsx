@@ -21,13 +21,13 @@ const CreateProject = () => {
     e.preventDefault();
 
     try {
-      const token = localStorage.getItem("token")|| localStorage.getItem('authToken');
+      const apiKey = localStorage.getItem("apiKey");
 
       await axios.post(
         'https://subpf-1.onrender.com/api/add',
         form,
         {
-          headers: { "authorization": `Bearer ${token}` },
+          headers: { 'x-api-key': apiKey },
           withCredentials:true
         }
       );

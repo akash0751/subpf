@@ -9,6 +9,7 @@ import Register from "./pages/Register";
 import CreateProject from "./pages/CreateProject";
 import ViewProject from "./pages/ViewProject";
 import Home from "./pages/Home";
+import ApiKeyDisplay from "./pages/ApiKeyDisplay";
 
 const App = () =>{
   return (
@@ -22,7 +23,7 @@ const App = () =>{
         <Route path="/" element={<Home />} />
         <Route path="/add-project" element={<CreateProject />} />
         <Route path="/view-project" element={<ViewProject />} />
-        
+        <Route path="/api-key" element={<ApiKeyDisplay />} />
       </Routes>
     </Router>
     </>

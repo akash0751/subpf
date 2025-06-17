@@ -18,14 +18,18 @@ const createProject = async (req, res) =>{
             }
 }
 
-const getProject = async (req, res) =>{
-    try{
-        const project = await Project.find()
-        res.status(200).json({project})
-        } catch (error) {
-            res.status(500).json({message: 'Error fetching project', error})
-    }
-}
+const getProject = async (req, res) => {
+  try {
+    const userId = req.user.id; // set by your JWT or API key middleware
+
+    const project = await Project.find({ user: userId }); // filter by current user's ID
+
+    res.status(200).json({ project });
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching project', error });
+  }
+};
+
 
 const updateProject = async (req, res) => {
   try {

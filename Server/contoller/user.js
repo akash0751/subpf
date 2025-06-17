@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
 dotenv.config()
+const generateApiKey = require('../utils/generateApiKey')
 
 const registerForm = async (req, res) => {
   try {
@@ -14,10 +15,13 @@ const registerForm = async (req, res) => {
 
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(password, salt); // OTP 6-digit
+
+    const apiKey = generateApiKey()    
     const user = new PfUser({
         name,
         email,
-        password: hashPassword
+        password: hashPassword,
+        apiKey
         });
         const savedUser = await user.save();
     
@@ -33,7 +37,7 @@ const registerForm = async (req, res) => {
     });
 
     
-    res.status(200).json({ message: "Registration Successful", token ,user:savedUser});
+    res.status(200).json({ message: "Registration Successful", token ,apiKey,user:savedUser});
   } catch (error) {
     console.error("Error registering user:", error);
     res.status(400).send({ message: error.message });
@@ -50,6 +54,11 @@ const login = async(req,res)=>{
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
 
+    if (!user.apiKey) {
+      user.apiKey = generateApiKey();
+      await user.save();
+    }
+
     const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: "1h" });
     
     res.cookie('jwt', token, {
@@ -59,7 +68,7 @@ const login = async(req,res)=>{
         maxAge: 24*60*60*1000 // 1 day
     })
 
-    res.json({ message:'Logged in successfully' ,token,user});
+    res.json({ message:'Logged in successfully' ,token,apiKey:user.apiKey,user});
   } catch (error) {
     res.status(500).json({ message: "Server error" });
   }
