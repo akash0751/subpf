@@ -49,9 +49,9 @@ const Register = () => {
             <label>Password</label>
             <input type="password" name="password" className="form-control" required onChange={handleChange} />
           </div>
-          <Button type="submit" variant="primary" disabled={loading}>
+          <button type="submit" variant="primary" disabled={loading}>
   {loading ? "Signing up..." : "Signup"}
-</Button>
+</button>
           <p className="mt-3 text-center">
             Already have an account? <Link to="/login">Login</Link>
           </p>
