@@ -14,7 +14,8 @@ app.use(rateLimiter)
 app.use(cors(
     ({
     origin: ["https://projectguideinfo.netlify.app",
-        "https://akashpfinfos.netlify.app"
+        "https://akashpfinfos.netlify.app",
+        "http://localhost:3000",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
