@@ -92,15 +92,6 @@ const ViewProject = () => {
 ) : (
   <>
     {projects.length === 0 && <p>No projects found.</p>}
-    {projects.map(project => (
-      <Card className="mb-3 p-3 shadow-sm" key={project._id}>
-        {/* card content */}
-      </Card>
-    ))}
-  </>
-)}
-
-        {projects.length === 0 && <p>No projects found.</p>}
         {projects.map(project => (
           <Card className="mb-3 p-3 shadow-sm" key={project._id}>
             <h5>{project.title}</h5>
@@ -114,6 +105,9 @@ const ViewProject = () => {
             </div>
           </Card>
         ))}
+  </>
+)}
+
 
         {/* Edit Modal */}
         <Modal show={showModal} onHide={() => setShowModal(false)}>
