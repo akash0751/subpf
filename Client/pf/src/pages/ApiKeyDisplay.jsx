@@ -25,7 +25,13 @@ const ApiKeyDisplay = () => {
           )}
         </Card>
         <Card>
-            <h5>Fetch Function : https://subpf-1.onrender.com/api/get</h5>
+            <h5>Fetch Function : https://subpf-1.onrender.com/api/get</h5><br></br>
+            <h4>Attributes</h4>
+            <p>title</p>
+            <p>description</p>
+            <p>tools</p>
+            <p>sourceCode</p>
+            <p>hostLink</p>
         </Card>
       </Container>
     </>
