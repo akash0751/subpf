@@ -8,12 +8,13 @@ const Register = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ name: "", email: "", password: "" });
   const [error, setError] = useState("");
-
+  const [loading, setLoading] = useState(false);
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
     try {
       const response = await registerUser(formData);
       if (response.status === 200){
@@ -25,6 +26,8 @@ const Register = () => {
       setTimeout(() => navigate('/home'), 2000);
     }} catch (err) {
       setError(err.response?.data?.message || "Registration failed");
+    }finally{
+      setLoading(false);
     }
   };
 
@@ -46,7 +49,9 @@ const Register = () => {
             <label>Password</label>
             <input type="password" name="password" className="form-control" required onChange={handleChange} />
           </div>
-          <button type="submit" className="btn btn-success w-100">Register</button>
+          <Button type="submit" variant="primary" disabled={loading}>
+  {loading ? "Signing up..." : "Signup"}
+</Button>
           <p className="mt-3 text-center">
             Already have an account? <Link to="/login">Login</Link>
           </p>

@@ -7,12 +7,13 @@ const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
-
+  const [loading,setLoading] = useState(false)
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setLoading(true)
     try {
       const response = await loginUser(formData);
       const token = response.data.token;
@@ -25,6 +26,8 @@ const Login = () => {
       // Navigate to dashboard or homepage
     } catch (err) {
       toast.error(err.response?.data?.message || "Login failed");
+    }finally{
+      setLoading(false)
     }
   };
 
@@ -42,7 +45,9 @@ const Login = () => {
             <label>Password</label>
             <input type="password" name="password" className="form-control" required onChange={handleChange} />
           </div>
-          <button type="submit" className="btn btn-primary w-100">Login</button>
+          <Button type="submit" variant="primary" disabled={loading}>
+  {loading ? "Logging in..." : "Login"}
+</Button>
           <p className="mt-3 text-center">
             Don't have an account? <Link to='/register'>Register</Link>
           </p>
